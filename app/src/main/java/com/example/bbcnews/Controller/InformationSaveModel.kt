@@ -12,8 +12,9 @@ open class WeatherItem(
     var Date: Date = Date(),
     var ValMin: String = " ",
     var ValMax: String = " ",
-    //var Icon: String = "",
+    var IconDay: Int = 0,
+    var IconNight: Int = 0,
     var DayIconPhrase: String = " ",
-    var NightIconPhrase:String = " ",
+    var NightIconPhrase: String = " ",
     var MobileLink: String = " "
 ) : RealmObject()

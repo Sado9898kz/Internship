@@ -16,12 +16,12 @@ class WeatherItemAPI(
 )
 
 class Day(
-    val Icon: String,
+    val Icon: Int,
     val IconPhrase: String
 )
 
 class Night(
-    val Icon: String,
+    val Icon: Int,
     val IconPhrase: String
 )
 

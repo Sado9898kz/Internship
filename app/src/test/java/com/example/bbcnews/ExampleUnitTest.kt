@@ -1,12 +1,13 @@
 package com.example.bbcnews
 
-import com.example.bbcnews.Controller.TimeUnits
-import com.example.bbcnews.Controller.add
-import com.example.bbcnews.Controller.humanizeDiff
+import com.example.bbcnews.Controller.*
 import org.junit.Test
 
 import org.junit.Assert.*
-import java.util.Date
+import java.sql.Time
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -20,9 +21,23 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun test_image_ches() {
-        println(Date().add(1,TimeUnits.DAY).humanizeDiff())// Сегодня
-        println(Date().add(2,TimeUnits.DAY).humanizeDiff())// Завтра
+    fun test_date() {
+        println(Date().humanizeDate())// Сегодня
+        println(Date().add(1, TimeUnits.DAY).humanizeDate())// Сегодня
+        println(Date().add(2, TimeUnits.DAY).humanizeDate())// Завтра
+        println(Date().add(3, TimeUnits.DAY).humanizeDate())// Не должна работать
+        println(Date().format())// Дата
     }
 
+    @Test
+    fun test_time() {
+        val begin = Date().time(20, 0)
+        val end = Date().time(6, 0)
+        val time = Date().add(10, TimeUnits.HOUR)// Добавлем 10 часов
+        if (time > begin || time < end) {
+            println("Ok $time")
+        } else {
+            println("Error $time")
+        }
+    }
 }

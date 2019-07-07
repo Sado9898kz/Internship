@@ -1,5 +1,6 @@
 package com.example.bbcnews.View
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.support.v7.widget.RecyclerView
@@ -41,6 +42,7 @@ class RecAdapter(val items: RealmList<WeatherItem>) : RecyclerView.Adapter<RecHo
 
 class RecHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+    @SuppressLint("SetTextI18n")
     fun bind(item: WeatherItem) {
 
         val vDate = itemView.findViewById<TextView>(R.id.text_date)
@@ -49,13 +51,14 @@ class RecHolder(view: View) : RecyclerView.ViewHolder(view) {
         val vEve = itemView.findViewById<TextView>(R.id.text_evening)
         val vBrowser = itemView.findViewById<TextView>(R.id.text_browser)
         val vImage = itemView.findViewById<ImageView>(R.id.image)
+        val begin = Date().time(18, 0)
+        val end = Date().time(6, 0)
 
-
-        vDate.text = "День: ${if (item.Date <= Date().add(2, TimeUnits.DAY)) { item.Date.humanizeDiff() } else item.Date.format()}"
+        vDate.text = "День: ${if (item.Date < Date().add(1, TimeUnits.DAY)) {
+            item.Date.humanizeDate()} else item.Date.format()}"
         vTemp.text = "Температура    ${item.ValMax}C/${item.ValMin}C"
         vMor.text = "Утром: ${item.DayIconPhrase}"
         vEve.text = "Вечером: ${item.NightIconPhrase}"
-
 
         vBrowser.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW)
@@ -63,6 +66,11 @@ class RecHolder(view: View) : RecyclerView.ViewHolder(view) {
             vBrowser.context.startActivity(i)
         }
 
-        //Picasso.with(vThumb.context).load(item.thumbnail).into(vThumb)
+        if (Date() > begin || Date() < end) {
+            vImage.format(item.IconNight)
+        } else {
+            vImage.format(item.IconDay)
+        }
     }
 }
+

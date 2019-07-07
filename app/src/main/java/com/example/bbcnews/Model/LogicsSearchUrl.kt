@@ -47,6 +47,8 @@ class LogicsSearchUrl : Activity() {
                             feed.Date,
                             feed.Temperature.Minimum.Value,
                             feed.Temperature.Maximum.Value,
+                            feed.Day.Icon,
+                            feed.Night.Icon,
                             feed.Day.IconPhrase,
                             feed.Night.IconPhrase,
                             feed.MobileLink
