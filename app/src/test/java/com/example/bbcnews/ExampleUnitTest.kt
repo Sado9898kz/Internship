@@ -1,6 +1,12 @@
 package com.example.bbcnews
 
+import android.util.Log
 import com.example.bbcnews.Controller.*
+import com.example.bbcnews.Model.GPS
+import com.example.bbcnews.Model.createRequest
+import com.google.gson.Gson
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -40,4 +46,31 @@ class ExampleUnitTest {
             println("Error $time")
         }
     }
+/*
+    @Test
+    fun ff() {
+
+        val Latitude="42.8683282"
+        val Longitude="74.6342356"
+
+        class KeyGPS(
+                val Key:String)
+
+        fun funGPS(latitude: String, longitude: String) {
+            val o =
+                    createRequest("http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=jGUV6V6BSzwPAp26Q8KeufouhhlBEhNU%20&q=$latitude%2C-$longitude")
+                            .map { Gson().fromJson(it, KeyGPS::class.java) }
+                            .subscribeOn(Schedulers.io())
+
+            GPS = o.subscribe({
+                it.Key
+                println("${it.Key} Connect GPS")
+            }, {
+                println("Connect Dialog Search")
+            })
+        }
+
+        funGPS(Latitude,Longitude)
+    }*/
+
 }

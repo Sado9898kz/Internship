@@ -1,43 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:background="@color/colorPrimary">
-    <EditText
-            android:id="@+id/act2_edit"
-            android:background="@drawable/weather_filds"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_margin="10dp"
-            android:hint="@string/city_name"/>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
+
 
     <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="#D6CBCF"
-            android:textSize="25sp"
-            android:id="@+id/textView"/>
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        android:textColor="#D6CBCF"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabHideFab"
-            android:layout_height="50dp"
-            android:layout_width="50dp"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="80dp"
-            app:backgroundTint="#9ACD32"
-            app:borderWidth="5dp"
-            app:elevation="10dp"
-            app:fabSize="normal"
-            android:src="@android:drawable/ic_menu_mylocation"/>
+        android:id="@+id/btnGPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@android:drawable/ic_menu_mylocation"
+        app:backgroundTint="#9ACD32"
+        app:borderWidth="5dp"
+        app:elevation="10dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/btnSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.900"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.950" />
+
     <Button
-            android:id="@+id/act3_button"
-            android:layout_gravity="bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/find"
-            android:background="@drawable/weather_button"
-            android:layout_margin="10dp"
-    />
-</FrameLayout>
+        android:id="@+id/btnSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center|clip_vertical"
+        android:layout_margin="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="28dp"
+        android:height="10dp"
+        android:background="@drawable/weather_button"
+        android:text="@string/find"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>

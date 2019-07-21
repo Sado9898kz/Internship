@@ -1,4 +1,6 @@
 <resources>
+
+    // list_item
     <string name="app_name">Weather</string>
     <string name="Day">Утром</string>
     <string name="temperature">Температура</string>
@@ -7,4 +9,8 @@
     <string name="detailed"><![CDATA[Подробно->]]></string>
     <string name="city_name">"  "Введите 2155957</string>
     <string name="find">Найти</string>
+
+    // main screen
+    <string name="details_for_5_day">Подробно на 5 дней</string>
+    <string name="degree">Градус</string>
 </resources>

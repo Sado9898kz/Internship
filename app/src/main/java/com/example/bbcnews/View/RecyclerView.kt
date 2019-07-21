@@ -12,13 +12,15 @@ import android.widget.TextView
 import com.example.bbcnews.Controller.*
 import com.example.bbcnews.R
 import io.realm.RealmList
+import kotlinx.android.synthetic.main.list_item.view.*
+import kotlinx.android.synthetic.main.recycler_view.view.*
 import java.util.*
 
 class RecAdapter(val items: RealmList<WeatherItem>) : RecyclerView.Adapter<RecHolder>() {
+
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecHolder {
 
         val inflater = LayoutInflater.from(p0!!.context)
-
         val view = inflater.inflate(R.layout.list_item, p0, false)
 
         return RecHolder(view)
@@ -29,8 +31,8 @@ class RecAdapter(val items: RealmList<WeatherItem>) : RecyclerView.Adapter<RecHo
     }
 
     override fun onBindViewHolder(p: RecHolder, p1: Int) {
-        val item = items[p1]!!
 
+        val item = items[p1]!!
         p?.bind(item)
     }
 
@@ -39,37 +41,31 @@ class RecAdapter(val items: RealmList<WeatherItem>) : RecyclerView.Adapter<RecHo
     }
 }
 
-
 class RecHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     @SuppressLint("SetTextI18n")
     fun bind(item: WeatherItem) {
 
-        val vDate = itemView.findViewById<TextView>(R.id.text_date)
-        val vTemp = itemView.findViewById<TextView>(R.id.text_temperature)
-        val vMor = itemView.findViewById<TextView>(R.id.text_morning)
-        val vEve = itemView.findViewById<TextView>(R.id.text_evening)
-        val vBrowser = itemView.findViewById<TextView>(R.id.text_browser)
-        val vImage = itemView.findViewById<ImageView>(R.id.image)
         val begin = Date().time(18, 0)
         val end = Date().time(6, 0)
 
-        vDate.text = "День: ${if (item.Date < Date().add(1, TimeUnits.DAY)) {
-            item.Date.humanizeDate()} else item.Date.format()}"
-        vTemp.text = "Температура    ${item.ValMax}C/${item.ValMin}C"
-        vMor.text = "Утром: ${item.DayIconPhrase}"
-        vEve.text = "Вечером: ${item.NightIconPhrase}"
+        itemView.tv_date.text = "День: ${if (item.Date < Date().add(1, TimeUnits.DAY)) {
+            item.Date.humanizeDate()
+        } else item.Date.format()}"
+        itemView.tv_temperature.text = "Температура    ${item.ValMax}C/${item.ValMin}C"
+        itemView.tv_morning.text = "Утром: ${item.DayIconPhrase}"
+        itemView.tv_evening.text = "Вечером: ${item.NightIconPhrase}"
 
-        vBrowser.setOnClickListener {
+        itemView.tv_browser.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(item.MobileLink)
-            vBrowser.context.startActivity(i)
+            itemView.tv_browser.context.startActivity(i)
         }
 
         if (Date() > begin || Date() < end) {
-            vImage.format(item.IconNight)
+            itemView.iv_image.format(item.IconNight)
         } else {
-            vImage.format(item.IconDay)
+            itemView.iv_image.format(item.IconDay)
         }
     }
 }
